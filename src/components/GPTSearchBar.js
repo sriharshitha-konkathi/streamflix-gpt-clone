@@ -54,7 +54,13 @@ const GPTSearchBar = () => {
 
   return (
     <div className=" pt-[10%] flex justify-center">
-      <form className="flex gap-4 w-1/2">
+      <form
+        className="flex gap-4 w-1/2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch();
+        }}
+      >
         <input
           type="text"
           ref={searchText}
