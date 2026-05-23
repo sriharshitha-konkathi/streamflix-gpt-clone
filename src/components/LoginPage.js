@@ -81,12 +81,9 @@ const LoginPage = () => {
       }}
       className=" relative min-h-screen bg-cover bg-center"
     >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-        alt="Netflix"
-        width="150"
-        className="absolute top-6 left-10"
-      />
+      <h1 className="text-red-600 text-4xl font-extrabold tracking-widest cursor-default bg-black bg-opacity-30">
+        STREAMFLIX
+      </h1>
       <div className="flex items-center justify-center min-h-screen bg-black bg-opacity-30">
         <div className="bg-black bg-opacity-80 p-12 w-96 rounded-lg text-white">
           <form
