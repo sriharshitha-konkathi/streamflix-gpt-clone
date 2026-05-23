@@ -21,7 +21,12 @@ const GPTSearchBar = () => {
 
     const prompt = `Act as a movie recommendation expert. Based on this query: "${query}", suggest 5 movie names. Return ONLY the movie names separated by commas. Example: Inception, Interstellar, The Dark Knight, Avatar, Titanic`;
 
-    const response = await fetch("/v1/chat/completions", {
+    const url =
+      process.env.NODE_ENV === "development"
+        ? "/v1/chat/completions"
+        : "/api/chat";
+
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
