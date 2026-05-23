@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LoginPage from "./components/LoginPage";
+import ErrorPage from "./components/ErrorPage";
+import BrowsePage from "./components/BrowsePage";
+import GPTSearchPage from "./components/GPTSearchPage";
+import AppLayout from "./components/AppLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-function App() {
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
+
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/browse",
+        element: (
+          <ProtectedRoute>
+            <BrowsePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/gpt",
+        element: (
+          <ProtectedRoute>
+            <GPTSearchPage />{" "}
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+]);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RouterProvider router={appRouter} />
     </div>
   );
-}
+};
 
 export default App;
